@@ -1,7 +1,8 @@
 <h1 align="center"> Global5 Solution </h1>
 
 ## 🎯 Sobre o projeto
- App web feito em .NET 8 com Blazor wasm e minimal API, Com Dapper e Stored Procedures para acesso à dados.
+ App web feito em .NET 8 com Blazor wasm e minimal API ultilizando Dapper para acesso à dados. 
+ Os endpoints da API chamam stored procedures do banco de dados para a minipulação de dados.
 
 ## 🔨 Funcionalidades do projeto
 
@@ -23,7 +24,7 @@ porém, checar as URLs do terminal para acessar a api e o frontend.
  Ao subir a API e acessar a URL, o usuário será direcionado ao browser com a mensagem "OK" de health-check.
 A Api está documentada no Swagger, que pode ser acessada colocando /swagger no final da URL do localhost. <br>
 
- Um pouco sobre a arquitetura do projeto, escolhi criar uma class library chamada Kietec.Core que define os padrões e comportamentos de requests e responses.
+ Um pouco sobre a arquitetura do projeto, escolhi criar uma class library chamada Global5.Core que define os padrões e comportamentos de requests e responses.
 Por meio de handlers implementados no core, a API mapeia e implementa seus endpoints e define como vai lidar com cada requisição, além de estabelecer as relações e gerenciar o banco de dados com EntityFramework. 
 
 <br>
