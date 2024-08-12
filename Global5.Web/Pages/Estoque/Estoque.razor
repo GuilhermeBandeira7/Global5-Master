@@ -1,0 +1,50 @@
+﻿@page "/estoque"
+@inherits EstoquePage
+
+<MudText Typo="Typo.h3">Estoque</MudText>
+<div class="d-flex justify-end">
+    <MudButton Class="mr-2"
+               Variant="Variant.Filled"
+               Color="Color.Primary"
+               StartIcon="@Icons.TwoTone.Add"
+               Href="/estoque/adicionar">
+        NOVA MOVIMENTAÇÃO
+    </MudButton>
+</div>
+
+<MudDataGrid Class="mt-4"
+             Items="@Movimentation"
+             ReadOnly="false"
+             EditMode="@DataGridEditMode.Form"
+             CommittedItemChanges="CommittedItemChanges"
+             T="Core.Models.Estoque">
+    <Columns>
+        <HierarchyColumn T="Estoque"  />
+        <PropertyColumn Property="x => x.Id" Title="Id" IsEditable="false"/>
+        <PropertyColumn Property="x => x.Data" Title="Data"/>
+        <PropertyColumn Property="x => x.FornecedorId" Title="Fornecedor"/>
+        <PropertyColumn Property="x => x.MaterialId" Title="Material"/>
+        <PropertyColumn Property="x => x.Quantidade" Title="Quantidade"/>
+        <PropertyColumn Property="x => x.ValorTotal" Title="Valor Total"/>
+        <PropertyColumn Property="x => x.TipoOperacao" Title="Tipo"/>
+        <TemplateColumn Class="d-flex justify-end">
+            <CellTemplate>
+                <MudIconButton
+                    Icon="@Icons.Material.Filled.Delete"
+                    Color="Color.Error"
+                    OnClick="() => OnDeleteButtonClickedAsync(context.Item.Id, context.Item.Id.ToString())"/>
+                <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit"
+                               OnClick="@context.Actions.StartEditingItemAsync"/>
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+</MudDataGrid>
+
+@code {
+
+    void CommittedItemChanges(Core.Models.Estoque estoque)
+    {
+        OnEditAsync(estoque.Id, estoque);
+    }
+
+}

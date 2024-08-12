@@ -1,0 +1,48 @@
+﻿@page "/estoque/adicionar"
+@inherits AddMovimentationPage
+
+<MudText Typo="Typo.h3">Nova Movimentação</MudText>
+
+<MudPaper Class="pa-8 mt-4">
+    <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+        <DataAnnotationsValidator />
+
+        <MudTextField Label="Fornecedor"
+                      HelperText="Campo obrigatório"
+                      @bind-Value="InputModel.FornecedorId"
+                      For="@(() => InputModel.FornecedorId)" />
+
+        <MudTextField Label="Material"
+                      HelperText="Campo obrigatório"
+                      @bind-Value="InputModel.MaterialId"
+                      For="@(() => InputModel.MaterialId)" />
+
+        <MudTextField Label="Quantidade"
+                      HelperText="Campo obrigatório"
+                      @bind-Value="InputModel.Quantidade"
+                      For="@(() => InputModel.Quantidade)" />
+
+        <MudTextField Label="Valor Total"
+                      HelperText="Campo obrigatório"
+                      @bind-Value="InputModel.ValorTotal"
+                      For="@(() => InputModel.ValorTotal)" />
+
+        <MudTextField Label="Tipo de Operação"
+                      HelperText="Campo obrigatório"
+                      @bind-Value="InputModel.TipoOperacao"
+                      For="@(() => InputModel.TipoOperacao)" />
+
+        @if (IsBusy)
+        {
+            <MudProgressCircular Indeterminate="true" Color="Color.Primary" />
+        }
+        else
+        {
+            <MudButton ButtonType="ButtonType.Submit"
+                       Variant="Variant.Filled"
+                       Color="Color.Primary">
+                Salvar
+            </MudButton>
+        }
+    </EditForm>
+</MudPaper>

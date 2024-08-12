@@ -1,0 +1,38 @@
+﻿@page "/relatorio"
+@inherits RelatorioPage
+
+
+<MudNumericField @bind-Value="FornecedorId" Label="ID do Fornecedor" Variant="Variant.Text" Min="1" Max="100000" />
+<MudNumericField @bind-Value="MaterialId" Label="ID do Material" Variant="Variant.Text" Min="1" Max="100000" />
+<MudButton Class="mt-2"
+           Variant="Variant.Filled"
+           Color="Color.Primary"
+           StartIcon="@Icons.TwoTone.Add"
+           OnClick="Callback">
+    GERAR RELATÓRIO
+</MudButton>
+
+<MudDataGrid Class="mt-4"
+             Items="@Relatorio"
+             ReadOnly="false"
+             T="Core.Models.Relatorio">
+    <Columns>
+        <HierarchyColumn T="Relatorio"  />
+        <PropertyColumn Property="x => x.Fornecedor" Title="Fornecedor" IsEditable="false"/>
+        <PropertyColumn Property="x => x.Material" Title="Material"/>
+        <PropertyColumn Property="x => x.Quantidade" Title="Quantidade"/>
+        <PropertyColumn Property="x => x.Preco_Unitario" Title="Preço Unitário"/>
+        <PropertyColumn Property="x => x.Total" Title="Valor Total"/>
+    </Columns>
+</MudDataGrid>
+
+@code {
+    public int FornecedorId { get; set; }
+    public int MaterialId { get; set; }
+
+    private async Task Callback(MouseEventArgs obj)
+    {
+        await OnFormSubmit(FornecedorId, MaterialId);
+    }
+
+}

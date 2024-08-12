@@ -1,0 +1,45 @@
+﻿@page "/fornecedores"
+@using Global5.Core.Models
+@inherits FornecedoresPage
+
+<MudText Typo="Typo.h3">Fornecedores</MudText>
+
+<div class="d-flex justify-end">
+    <MudButton
+        Variant="Variant.Filled"
+        Color="Color.Primary"
+        StartIcon="@Icons.TwoTone.Add"
+        Href="/fornecedores/adicionar">
+        NOVO FORNECEDOR
+    </MudButton>
+</div>
+
+<MudDataGrid Class="mt-4"
+             Items="@Fornecedores"
+             ReadOnly="false" 
+             EditMode="@DataGridEditMode.Form"
+             CommittedItemChanges="CommittedItemChanges"
+             T="Fornecedor">
+    <Columns>
+        <HierarchyColumn T="Fornecedor"  />
+        <PropertyColumn Property="x => x.Id" Title="Id" IsEditable="false" />
+        <PropertyColumn Property="x => x.CNPJ" Title="CNPJ"/>
+        <PropertyColumn Property="x => x.RazaoSocial" Title="Razão Social"/>
+        <TemplateColumn Class="d-flex justify-end">
+            <CellTemplate>
+                <MudIconButton
+                    Icon="@Icons.Material.Filled.Delete"
+                    Color="Color.Error"
+                    OnClick="() => OnDeleteButtonClickedAsync(context.Item.Id, context.Item.RazaoSocial)"/>
+                <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" OnClick="@context.Actions.StartEditingItemAsync" />
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+</MudDataGrid>
+
+@code {
+    void CommittedItemChanges(Fornecedor fornecedor)
+    {
+        OnEditAsync(fornecedor.Id, fornecedor);
+    }
+}

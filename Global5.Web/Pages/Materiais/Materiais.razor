@@ -1,0 +1,48 @@
+﻿@page "/materiais"
+@using Global5.Core.Models
+@inherits MateriaisPage
+
+<MudText Typo="Typo.h3">Materiais</MudText>
+<div class="d-flex justify-end">
+    <MudButton Class="mr-2"
+               Variant="Variant.Filled"
+               Color="Color.Primary"
+               StartIcon="@Icons.TwoTone.Add"
+               Href="/materiais/adicionar">
+        NOVO MATERIAL
+    </MudButton>
+</div>
+
+<MudDataGrid Class="mt-4"
+             Items="@Materiais"
+             ReadOnly="false"
+             EditMode="@DataGridEditMode.Form"
+             CommittedItemChanges="CommittedItemChanges"
+             T="Material">
+    <Columns>
+        <HierarchyColumn T="Material"  />
+        <PropertyColumn Property="x => x.Id" Title="Id" IsEditable="false"/>
+        <PropertyColumn Property="x => x.Codigo" Title="Código"/>
+        <PropertyColumn Property="x => x.Nome" Title="Nome"/>
+        <PropertyColumn Property="x => x.UnidadeMedida" Title="Unidade de Medida"/>
+        <TemplateColumn Class="d-flex justify-end">
+            <CellTemplate>
+                <MudIconButton
+                    Icon="@Icons.Material.Filled.Delete"
+                    Color="Color.Error"
+                    OnClick="() => OnDeleteButtonClickedAsync(context.Item.Id, context.Item.Nome)"/>
+                <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit"
+                               OnClick="@context.Actions.StartEditingItemAsync"/>
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+</MudDataGrid>
+
+@code {
+
+    void CommittedItemChanges(Material material)
+    {
+        OnEditAsync(material.Id, material, "");
+    }
+
+}
