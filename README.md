@@ -6,7 +6,7 @@
 
 ## 🔨 Funcionalidades do projeto
 
- O App lista materiais, fonrcedores, estoque e relatórios.
+ O App lista materiais, fonrcedores, estoque e gera relatórios.
 
 ## 🛠️ Abrir e rodar o projeto
 
