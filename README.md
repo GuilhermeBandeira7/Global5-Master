@@ -1,7 +1,7 @@
 <h1 align="center"> Global5 Solution </h1>
 
 ## 🎯 Sobre o projeto
- App web feito em .NET 8 com Blazor wasm e minimal API ultilizando Dapper para acesso à dados. 
+ App web feito em .NET 8 com Blazor wasm e minimal API utilizando Dapper para acesso à dados. 
  Os endpoints da API chamam stored procedures do banco de dados para a minipulação de dados.
 
 ## 🔨 Funcionalidades do projeto
@@ -14,7 +14,9 @@
 Após baixar o projeto ou clonar o repositório, basta acessar a Pasta Global5.Api pelo terminal e executar o comando 'dotnet run' para rodar a api, a URL
 da API será mostrada no terminal. Repetir o mesmo processo com a pasta Globl5.Web, que irá subir o frontend. Feito isso, é só acessar a URL do front-end 
 que será mostrada no terminal também. O terminal irá mostrar as URLs corretas de cada projeto.
-
+<br>
+É necessário criar o banco de dados manualmente no SQL Server com o script disponibilizado no projeto e editar a string de conexão com o IP do banco de dados.
+<br>
  As configurações das URLs usadas para rodar a solução estão presentes no arquivo appsettings.json na pasta Global5.Api,
 porém, checar as URLs do terminal para acessar a api e o frontend.  
 <br>
